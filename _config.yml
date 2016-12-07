@@ -79,8 +79,8 @@ analytics:
 author:
   name             : "Kevin Almansa"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Curious, Coffee drinking Hacker."
-  location         : "London"
+  bio              : "Curious, coffee drinking Hacker."
+  location         : "London, UK"
   email            : "kevin.almansa@gmail.com"
   uri              :
   bitbucket        :
