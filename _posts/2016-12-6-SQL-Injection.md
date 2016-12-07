@@ -1,6 +1,11 @@
 ---
 title: SQL Injection
 excerpt: In this post we cover the three categories of SQL Injection and detail and provide examples for four types of SQLi attacks.
+categories:
+  - SQL Injection
+tags:
+  - SQLi
+  - Pentesting
 ---
 
 ## What is a SQL
