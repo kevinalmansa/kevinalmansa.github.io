@@ -1,7 +1,5 @@
 ---
-layout: post
 title: SQL Injection
-comments: true
 excerpt: In this post we cover the three categories of SQL Injection and detail and provide examples for four types of SQLi attacks.
 ---
 
