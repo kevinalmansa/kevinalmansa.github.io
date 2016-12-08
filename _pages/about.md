@@ -3,7 +3,7 @@ layout: splash
 permalink: /about/
 title: "About"
 header:
-  image: /assets/images/Park.jpg
+  image: /assets/images/Park-thin.jpg
 ---
 
 ### Who Am I?
