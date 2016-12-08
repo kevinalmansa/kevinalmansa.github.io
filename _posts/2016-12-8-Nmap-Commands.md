@@ -6,7 +6,11 @@ categories:
 tags:
   - Nmap
   - Scanning
+  - Metasploit
 ---
+
+This post covers basic Nmap commands for Intelligence Gathering using active
+techniques and passive techniques in conjunction with Metasploit.
 
 ## Network Discovery
 
