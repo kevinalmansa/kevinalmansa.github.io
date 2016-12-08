@@ -22,8 +22,8 @@ input for a search bar.
 
 This information will be incorporated into the query sent to the database so
 that the appropriate information may  be retrieved and returned to the
-application, which will then decide how to present it (product page, tables, etc
-.).
+application, which will then decide how to present it (product page, tables,
+etc.).
 
 ## What is SQL Injection (SQLi)
 
