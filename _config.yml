@@ -14,7 +14,7 @@ description              : "Ramblings of an IT and Coffee obssessed"
 url                      : "https://kevinalmansa.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "kevinalmansa/kevinalmansa.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : "/assets/images/profile.jpeg" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
@@ -78,7 +78,7 @@ analytics:
 # Site Author
 author:
   name             : "Kevin Almansa"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/profile.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Curious, coffee drinking Hacker."
   location         : "London, UK"
   email            : "kevin.almansa@gmail.com"
