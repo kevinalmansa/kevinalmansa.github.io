@@ -40,16 +40,19 @@ their prices) amongst other things. When an attacker controls the
 queries sent to a database they can potentially retrieve and or modify this
 information.
 
-There are three categories of SQLi:
+There are three categories of SQLi, as explained by Joseph McCray:
 
 * **Inband**: The most straightforward kind of attack; data is retrieved in the
-same channel that is used to inject the SQL code. \[1].
+same channel that is used to inject the SQL code.
+[1](https://www.youtube.com/watch?v=rdyQoUNeXSg).
 
 * **Inferential**: There is no actual transfer of data, but the tester is able to
 reconstruct the information by sending particular requests and observing the
-resulting behavior. \[1] This attack is often called a Blind SQL Injection.
+resulting behavior. [1](https://www.youtube.com/watch?v=rdyQoUNeXSg)
+This attack is often called a Blind SQL Injection.
 
-* **Out-of-band**: Data is retrieved using a different channel (e.g.: email) \[1]
+* **Out-of-band**: Data is retrieved using a different channel (e.g.: email)
+[1](https://www.youtube.com/watch?v=rdyQoUNeXSg)
 
 These classes can then be broken down into various types of SQLi attacks,
 based on the configuration of the server and the behavior of the application.
@@ -71,7 +74,8 @@ it takes longer for the application to respond, for example 10 seconds if we
 asked the database to wait 10 seconds, we know the condition is true.
 
 More detail will be given later on these attacks. If you can, watch the
-conference given by Joe McCray at Defcon 17 \[1]. It is hands down one of the
+conference given by Joseph McCray at Defcon 17
+[1](https://www.youtube.com/watch?v=rdyQoUNeXSg). It is hands down one of the
 best SQL Injection videos I have seen (and most entertaining as well).
 
 ## The Basics
@@ -274,7 +278,9 @@ As you can imagine this is relatively slow and tedious and could require many
 queries to obtain database or table names.
 
 #### Example
-As demonstrated by OWASP \[3] let's suppose the URL is:
+As demonstrated by OWASP
+[2](https://www.owasp.org/index.php/Testing_for_SQL_Injection_(OTG-INPVAL-005)#Boolean_Exploitation_Technique)
+let's suppose the URL is:
 
 ```
 http://www.example.com/index.php?id=1
@@ -287,7 +293,7 @@ SELECT field1, field2, field3 FROM Users WHERE Id='$Id'
 ```
 
 This can be easily exploited by adding a single quote, as we previously saw in
-the section [The Basics](##The Basics).
+the section [The Basics](##The-Basics).
 
 Let's assume we want to retrieve the username for the account executing the
 queries on the database, and let's assume it can be retrieved using the keyword
@@ -375,14 +381,16 @@ http://www.vulnerableapp.example/product?id=(41+1)
 If the same product page is shown (that of id=42), congratulations, SQL
 Injection is possible.
 
-This is demonstrated by Joe McCray in \[1].
+This is demonstrated by Joseph McCray in
+[1](https://www.youtube.com/watch?v=rdyQoUNeXSg).
 
 ### Cheat Sheet
 While SQL is a standardized language, databases handle data types and database
 specific commands (such as retrieving the version, users, passwords, etc.)
 differently. As such proper references, aka cheat sheets, are invaluable.
 
-The best I've seen on the net come from Pentest Monkey \[4] who provides cheat
+The best I've seen on the net come from Pentest Monkey
+[3](http://pentestmonkey.net/cheat-sheet/sql-injection) who provides cheat
 sheets for a variety of databases including MySQL, PostgreSQL, MSSQL, etc.
 
 ### Tools
@@ -395,19 +403,18 @@ Take these for what they are. They are tools that should be used as a support
 when applicable. Ensure you know how they work, when to use them, and what
 can go wrong. Try not to be dependent on them.
 
-* SQLMap \[5]
-* SQLNinja \[6]
-* BSQL \[7]
-* TheMole \[8]
+* SQLMap [4](https://github.com/sqlmapproject/sqlmap)
+* SQLNinja [5](http://sqlninja.sourceforge.net/)
+* BSQL [6](https://labs.portcullis.co.uk/tools/bsql-hacker/)
+* TheMole [7](https://sourceforge.net/projects/themole/)
 
 
 ## References
-1. DEFCON 17 - Joseph McCray - Advanced SQL Injection
-https://www.youtube.com/watch?v=rdyQoUNeXSg
-2. https://www.owasp.org/index.php/Testing_for_SQL_Injection_(OTG-INPVAL-005)#Boolean_Exploitation_Technique
-3. https://www.owasp.org/index.php/SQL_Injection
-4. http://pentestmonkey.net/cheat-sheet/sql-injection
-5. https://github.com/sqlmapproject/sqlmap
-6. http://sqlninja.sourceforge.net/
-7. https://labs.portcullis.co.uk/tools/bsql-hacker/
-8. https://sourceforge.net/projects/themole/
+1. DEFCON 17 - Joseph McCray - Advanced SQL Injection -
+<https://www.youtube.com/watch?v=rdyQoUNeXSg>
+2. OWASP Testing for SQL Injection - <https://www.owasp.org/index.php/Testing_for_SQL_Injection_(OTG-INPVAL-005)#Boolean_Exploitation_Technique>
+3. pentestmonkey Cheatsheets - <http://pentestmonkey.net/cheat-sheet/sql-injection>
+4. SQLMap - <https://github.com/sqlmapproject/sqlmap>
+5. SQLNinja - <http://sqlninja.sourceforge.net/>
+6. BSQL - <https://labs.portcullis.co.uk/tools/bsql-hacker/>
+7. TheMole - <https://sourceforge.net/projects/themole/>
