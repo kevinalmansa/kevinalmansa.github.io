@@ -12,6 +12,8 @@ tags:
 This post covers basic Nmap commands for Intelligence Gathering using active
 techniques and passive techniques in conjunction with Metasploit.
 
+Basic arguments such as OS Detection, Port Ranges, etc. are ommited.
+
 ## Network Discovery
 
 ### Simple List
@@ -74,6 +76,12 @@ nmap -PN -sI <ip of found host> 190.168.56.101
 
 ```
 ls /usr/share/nmap/scripts/
+```
+
+### Update Script Database
+
+```
+nmap --script-updatedb
 ```
 
 ### Run Default Scripts
