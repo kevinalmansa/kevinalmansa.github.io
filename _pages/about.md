@@ -1,6 +1,8 @@
 ---
 permalink: /about/
 title: "About"
+header:
+  image: /assets/images/Park.jpg
 ---
 
 ### Who Am I?
