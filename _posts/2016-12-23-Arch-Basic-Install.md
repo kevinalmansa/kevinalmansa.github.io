@@ -74,8 +74,9 @@ nano /etc/locale.conf
 
 /etc/locale.conf:
 
-> LANG=en_GB.UTF-8
-
+```
+LANG=en_GB.UTF-8
+```
 
 ```
 nano /etc/vconsole.conf
@@ -83,8 +84,9 @@ nano /etc/vconsole.conf
 
 /etc/vconsole.conf:
 
-> KEYMAP=fr
-
+```
+KEYMAP=fr
+```
 
 ```
 nano /etc/hostname
@@ -92,8 +94,9 @@ nano /etc/hostname
 
 /etc/hostname:
 
-> coffeemachine
-
+```
+coffeemachine
+```
 
 ```
 nano /etc/hosts
@@ -101,11 +104,13 @@ nano /etc/hosts
 
 /etc/hosts:
 
-> 127.0.0.1   localhost.localdomain   localhost
+```
+127.0.0.1   localhost.localdomain   localhost
 
-> ::1         localhost.localdomain   localhost
+::1         localhost.localdomain   localhost
 
-> 127.0.1.1	  coffeemachine.localdomain	  coffeemachine
+127.0.1.1	  coffeemachine.localdomain	  coffeemachine
+```
 
 ```
 passwd
