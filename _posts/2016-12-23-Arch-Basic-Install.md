@@ -73,6 +73,7 @@ nano /etc/locale.conf
 ```
 
 /etc/locale.conf:
+
 > LANG=en_GB.UTF-8
 
 
@@ -81,6 +82,7 @@ nano /etc/vconsole.conf
 ```
 
 /etc/vconsole.conf:
+
 > KEYMAP=fr
 
 
@@ -89,6 +91,7 @@ nano /etc/hostname
 ```
 
 /etc/hostname:
+
 > coffeemachine
 
 
@@ -97,6 +100,7 @@ nano /etc/hosts
 ```
 
 /etc/hosts:
+
 > 127.0.0.1   localhost.localdomain   localhost
 
 > ::1         localhost.localdomain   localhost
@@ -117,6 +121,7 @@ bootctl --path=/boot install
 ```
 
 /boot/loader/loader.conf:
+
 ```
 default  arch
 timeout  4
@@ -125,6 +130,7 @@ timeout  4
 the command ```lsblk``` can be used to get PARTUUID value. It's the / partition, not EFI partition
 
 /boot/loader/entries/arch.conf
+
 ```
 title   Arch Linux
 linux   /vmlinuz-linux
