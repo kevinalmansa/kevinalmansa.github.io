@@ -78,7 +78,7 @@ analytics:
 # Site Author
 author:
   name             : "Kevin Almansa"
-  avatar           : "/assets/images/profile.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/profile.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "MSc Graduate with a passion and curiosity for Computer Security."
   location         : "London, UK"
   email            : "kevin.almansa@gmail.com"
