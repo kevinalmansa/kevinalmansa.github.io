@@ -8,23 +8,22 @@ header:
 
 ### Who Am I?
 
-I am your typical world traveling, coffee drinking, tech obssessed programmer
-and hacker.
-
 I have recently graduated from the University of Kent with a MSc in Computer
 Security, and possess two undergraduate degrees, one focusing on System
-Administration & Networking, the other a three year BSc focusing on Programming.
+Administration & Networking, and the other a three year BSc focusing on
+Programming.
 
 I have professional experience in IAM, Web Development, and System
-Administration.
-
-My Interests include Pentesting, Steganography, Programming, everything Linux
-and I am finally starting to get my feet wet in Reversing.
+Administration. I am confident programmer and have experience coding for and
+administrating Linux & Windows environments.
 
 I love discovering and learning about new technologies and how systems and
 infrastructures function.
 
-This blog will allow me to post and explain topcis, concepts, systems and tools
+My current interests include Vulnerability Research & Application Security,
+Reverse Engineering, Malware Analysis and any CTF I can join. :)
+
+This blog will allow me to post and explain topics, concepts, systems and tools
 I find interesting as well as serve as a location I use for personal resources
 and to discuss tools I develop.
 
