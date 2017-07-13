@@ -46,7 +46,7 @@ features of the PE executable format.
 
 Please note this post is related to a project I created which automates much of
 this technique. The project with its details can be found here:
-https://github.com/kevinalmansa/DLL_Wrapper
+[DLL Wrapper](https://github.com/kevinalmansa/DLL_Wrapper)
 
 ## DLL Proxying Overview
 
