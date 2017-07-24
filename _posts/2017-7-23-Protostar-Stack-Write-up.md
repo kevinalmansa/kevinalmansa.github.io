@@ -211,7 +211,7 @@ Again, this is the same as the previous, except the value we want to inject is
 different and the delivery is through an environment variable rather than a
 program argument.
 
-## stack3
+## Stack3
 
 ### Description
 
@@ -301,8 +301,8 @@ int main(int argc, char **argv)
 
 ### Write-up
 
-This challenge is a little more realistic in it's exploitation. From the
-code we can see a buffer and a call to ```gets```, but nothing else is done.
+This challenge is fun, we have a function that isn't called, and no function
+pointer to overflow. Let's find a way to call it.
 
 In order to control execution, we have to understand the concept of stack frames
 and the calling convention for the system in use in assembly. Here, we're in a
@@ -361,6 +361,56 @@ base of or frame is at **0xbffff7a8**, and then we add 4 to skip over the
 
 This means after writing 76 bytes, we should start overwriting the Return
 Address, and thus controlling where execution will resume when returning.
+
+Now, let's find the address of the function we want to call.
+
+```sh
+user@protostar:/opt/protostar/bin$ objdump -d stack4 | grep win
+080483f4 <win>:
+```
+
+Alright, the address we want to set EIP to is 0x080483f4.
+
+Our attack should thus be as follows:
+
+```sh
+user@protostar:/opt/protostar/bin$ python -c "print 'A' * 76 + '\xf4\x83\x04\x08'" | ./stack4
+code flow successfully changed
+Segmentation fault
+```
+
+Don't forget, little endian, thus the address of the buffer in the stack turns
+into \xf4\x83\x04\x08.
+
+The program may have crashed, but hey, we executed what we wanted to first.
+
+## Stack5
+
+### Description
+
+https://exploit-exercises.com/protostar/stack5/
+
+```C
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char **argv)
+{
+  char buffer[64];
+
+  gets(buffer);
+}
+```
+
+### Write-up
+
+This challenge is a little more realistic in it's exploitation. From the
+code we can see a buffer and a call to ```gets```, but nothing else is done.
+
+As we saw before, we need to control the value of EIP through the Return
+Address.
 
 Now the question is, to where do we make execution return? Well, these
 challenges don't have any security features enabled! So...why not place
