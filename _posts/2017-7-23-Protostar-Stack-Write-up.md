@@ -77,7 +77,7 @@ this output into the input of ./stack0.
 
 As we can see, modified was changed :)
 
-## stack1
+## Stack1
 
 ### Description
 
