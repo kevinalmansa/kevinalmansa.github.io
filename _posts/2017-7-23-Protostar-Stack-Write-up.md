@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 
 As we can see from the source code, the goal here is to simply modify the value
 of the variable ```modified```, which is located before our buffer. Memory is
-written up wards:
+written up wards as such:
 
 ![memory write](/assets/images/protostar/stack0.png)
 
@@ -59,7 +59,7 @@ This means if we write more than 64 bytes to ```buffer```, we will overflow into
 the variable ```modified``` and change it's value.
 
 Fortunately, a vulnerable function ```gets``` is used to write input into
-```buffer```. gets does not limit the amount of input written, which is why
+```buffer```. gets() does not limit the amount of input written, which is why
 it is considered unsafe. To abuse this, and overwrite modified, we simply need
 to enter 65 characters when asked for input. The 65th byte will be written to
 modified.
@@ -116,20 +116,21 @@ set the value of ```modified``` to a specific value, and of course, this time
 input is passed via a program parameter.
 
 Last time, we overflowed 'A' into modified, making the value 0x000041. This time
-let's try overflowing 4 value, 0x61, 0x62, 0x63, and 0x64.
+let's try overflowing 4 values; 0x61, 0x62, 0x63, and 0x64.
 
 ```
 user@protostar:/opt/protostar/bin$ ./stack1 $(python -c "print 'A' * 64 + '\x61\x62\x63\x64'")
 Try again, you got 0x64636261
 ```
 
-In python we can specify a byte value in a string with '\x' followed by the hex
-value we want.
+> Note:
+> In python we can specify a byte value in a string with '\x' followed by the hex
+> value we want.
 
-The value for modified this time was 0x64636261 when we entered 0x61626364. This
-is because the machine is **little endian** meaning you store the *least*
-*significant* byte in the smallest address. This can be visualized by this
-challenge as follows:
+The value for ```modified``` this time was 0x64636261 when we entered
+0x61626364. This is because the machine is **little endian** meaning you store
+the *least* *significant* byte in the smallest address. This can be visualized
+by this challenge as follows:
 
 ```sh
 user@protostar:/opt/protostar/bin$ ./stack1 $(python -c "print 'A' * 64 + '\x64'")
@@ -195,11 +196,11 @@ concept of environment variables.
 The challenge retrieves input from the environment variable **GREENIE**, and
 then uses ```strcpy``` to copy the input into the buffer.
 
-strcpy is considered a dangerous function because if the destination buffer is
+strcpy() is considered a dangerous function because if the destination buffer is
 not large enough to hold the source contents, it will overflow. This means if
-the data in GREENIE exceeds 64 bytes, buffer will overflow.
+the data in GREENIE exceeds 64 bytes, ```buffer``` will overflow.
 
-This time around the value we need to set to modified is ```0x0d0a0d0a```.
+This time around the value we need to set to ```modified``` is 0x0d0a0d0a.
 
 ```
 GREENIE=$(python -c "print 'A' * 64 + '\x0a\x0d\x0a\x0d'") ./stack2
@@ -207,7 +208,7 @@ you have correctly modified the variable
 ```
 
 Again, this is the same as the previous, except the value we want to inject is
-different and the delivery through an environment variable rather than a
+different and the delivery is through an environment variable rather than a
 program argument.
 
 ## stack3
@@ -252,12 +253,12 @@ Here, we have to overwrite a 4 byte variable (the same idea as in Stack1 & 2)
 only this time, the variable is a function pointer. The value we have to set
 it to is the address of the function win.
 
-Input is provided through standard input, the same way as in challenge Stack0.
+Input is provided through standard input, the same as in challenge Stack0.
 
 This challenge demonstrates how the execution flow can be controlled when a
 stack overflow allows for the control of a function pointer.
 
-First, we must find the address of the function win:
+First, we must find the address of the function ```win```:
 
 ```
 user@protostar:/opt/protostar/bin$ objdump -d stack3 | grep "win"
@@ -305,27 +306,29 @@ code we can see a buffer and a call to ```gets```, but nothing else is done.
 
 In order to control execution, we have to understand the concept of stack frames
 and the calling convention for the system in use in assembly. Here, we're in a
-32 bit Linux environment, and we're using the cdecl calling convention. Let's
+32 bit Linux environment, and we're using the *cdecl* calling convention. Let's
 not dive into the detail of what that means, but let's examine what it means
 concerning our stack. The stack will have a *frame* set up as such:
 
 ![stack5](/assets/images/protostar/stack5.png)
 
 The stack will expand to lower memory, so in order to expand the stack by x,
-x will be subtracted by ESP. As seen in stack1, data is written towards higher
+x will be subtracted by ESP. As seen in Stack1, data is written towards higher
 memory.
 
 Now the trick here is, how can we control execution? Well, when a function is
-called, the address (EIP) of the instruction AFTER the call is placed on the
-stack, so that we can continue when the function returns. This is known as the
-*Return Address*. When returning from a function, in reality, you're simply
-popping a pointer off the stack into EIP.
+called, the address of the instruction AFTER the call instruction is placed on
+the stack, so that we can continue when the function returns. This is known as
+the *Return Address*. When returning from a function, in reality, you're simply
+popping a pointer off the stack into EIP (the *Instruction Pointer* which
+controls execution).
 
-The pointer that is placed into EIP upon return is on the stack.
+In short, the pointer that is placed into EIP upon return is on the stack.
 
 What happens if we modify this value on the stack before it's placed into EIP...
+we'll control execution.
 
-Let's find how many bytes we must overwrite to reach the return address:
+Let's find how many bytes we must overwrite to reach the Return Address:
 
 ```sh
 (gdb) b *main + 21
@@ -367,7 +370,7 @@ case will simply be the address of the buffer containing shellcode on the stack.
 The following is a 21 byte shellcode I wrote that would be perfect for this
 situation:
 
-```Assembly
+```Nasm
 BITS 32
 
 global _start
@@ -517,12 +520,13 @@ Our payload should thus be as follows:
 '<shellcode>' + '\x90' * (76 - len(shellcode)) + '\xb0\xf7\xff\xbf'
 ```
 
-Don't forget, little endian, thus the address of the buffer in stack turns into
-\xb0\xf7\xff\xbf.
+Don't forget, little endian, thus the address of the buffer in the stack turns
+into \xb0\xf7\xff\xbf.
 
-```0x90``` is the NOP instruction, or No Operation. It is equivalent to
-```xchg eax, eax```. It does nothing, but uses up a cycle. It is thus ideal for
-building a "sled" to fill up the buffer.
+> Note:
+> ```0x90``` is the NOP instruction, or No Operation. It is equivalent to
+> ```xchg eax, eax```. It does nothing, but uses up a cycle. It is thus ideal
+> for building a "sled" to fill up the buffer.
 
 So with the shellcode mentioned before, at 21 bytes, and the format of our
 payload, our final payload should be as follows:
@@ -632,7 +636,7 @@ With our attack plan in mind, we now need to find the following:
   - address of a shell string
   - offset of the Return Address
 
-We'll simplify our lives a bit and use Metasploit's pattern's to generate a
+We'll simplify our lives a bit and use Metasploit's patterns to generate a
 core dump and find our offset to the Return Address. From the core dump we'll
 also be able to find the addresses of our libc functions.
 
@@ -678,7 +682,7 @@ this value, and again, use Metasploit, this time to detect what the offset was.
 [*] Exact match at offset 80
 ```
 
-We now have the offset, 80. Let's go back to GDB with stack6, and now find the
+We now have the offset, 80. Let's go back to GDB with Stack6, and now find the
 addresses we're missing.
 
 Let's start with finding a shell string:
@@ -731,7 +735,7 @@ Our payload should thus be in the following format:
 'A' * 80 + <address of system> + <address of exit> + <address of shell string>
 ```
 
-Note: 'A' can be anything, just need junk to fill up the first 80 bytes.
+> Note: 'A' can be anything, just need junk to fill up the first 80 bytes.
 
 Here's my exploit:
 
@@ -744,7 +748,7 @@ whoami
 root
 ```
 
-and we got a root shell :D
+We have a root shell :D
 
 ## stack7
 
@@ -806,7 +810,7 @@ assembly instruction ```call```) so that when the function returns (using the
 assembly instruction ```ret```) the Return Address is popped off the stack and
 into EIP.
 
-In this challenge only the return address is being verified...
+In this challenge only the Return Address is being verified...
 
 Well, why don't we find a ROP gadget that is simply the address of "ret" located
 in the executable, and build our stack similar to before?
