@@ -26,7 +26,7 @@ This first part will cover my solutions to the Stack Overflow challenges.
 
 https://exploit-exercises.com/protostar/stack0/
 
-```C
+```C++
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
