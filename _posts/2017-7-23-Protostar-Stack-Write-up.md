@@ -83,7 +83,7 @@ As we can see, modified was changed :)
 
 https://exploit-exercises.com/protostar/stack1/
 
-```C
+```c
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -157,7 +157,7 @@ the local variable ```modified``` to a specific value :)
 
 https://exploit-exercises.com/protostar/stack2/
 
-```C
+```c
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -217,7 +217,7 @@ program argument.
 
 https://exploit-exercises.com/protostar/stack3/
 
-```C
+```c
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -280,7 +280,7 @@ code flow successfully changed
 
 https://exploit-exercises.com/protostar/stack4/
 
-```C
+```c
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -390,7 +390,7 @@ The program may have crashed, but hey, we executed what we wanted to first.
 
 https://exploit-exercises.com/protostar/stack5/
 
-```C
+```c
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -420,7 +420,7 @@ case will simply be the address of the buffer containing shellcode on the stack.
 The following is a 21 byte shellcode I wrote that would be perfect for this
 situation:
 
-```Nasm
+```nasm
 BITS 32
 
 global _start
@@ -615,7 +615,7 @@ And we have a shell :)
 
 https://exploit-exercises.com/protostar/stack6/
 
-```C
+```c
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -806,7 +806,7 @@ We have a root shell :D
 
 https://exploit-exercises.com/protostar/stack7/
 
-```C
+```c
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
