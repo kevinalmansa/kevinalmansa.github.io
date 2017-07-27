@@ -450,8 +450,8 @@ _start:
 
 For the byte code:
 
-```cobjdump
-objdump -d linux_x86_execve_sh_21.o
+```sh
+$ objdump -d linux_x86_execve_sh_21.o
 
 linux_x86_execve_sh_21.o:     file format elf32-i386
 
