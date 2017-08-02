@@ -1,6 +1,6 @@
 ---
 title: IPTables
-excerpt: This post is created to both introduce and serve as a reference to the Linux firewall IPTables
+excerpt: This post is created to both introduce and serve as a reference to the Linux firewall IPTables.
 categories:
   - Network Security
 tags:
