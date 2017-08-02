@@ -32,8 +32,8 @@ kernel is compiled accordingly (default since Linux kernel 2.6).
 
 ### Tables
 
-IPTables get's it's name from it's design. It uses five tables which construct
-it's functionality:
+IPTables is used to configure the five Linux kernel tables which construct
+the functionality:
 
   1. `filter` the default table. This holds all actions typical of a firewall.
   2. `nat` Network Address Translation (port forwarding).
