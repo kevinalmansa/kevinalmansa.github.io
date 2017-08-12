@@ -38,9 +38,29 @@ strings can be leveraged for arbitrary writes to memory.
 
 ## Important Format String Options
 
-The key format string conversion specifiers are the following:
+Let's begin by detailing the format of format string placeholders:
 
-| Parameter | Input | Output |
+```
+%[parameter][flags][width][.precision][length]type
+```
+
+- ```[parameter]```: direct parameter access; Specifies the parameter to use for
+input
+- ```[flags]``` : the main one is ```0``` which, when used with width, prepends
+0s
+- ```[width]```: width modifier; the minimum number of characters to output
+- ```[.precision]```: the maximum number of characters to output
+- ```[length]```: length modifier. Allows conversion of output to char, short,
+int, etc.
+- ```type```: how to format the argument for output. For example %d expects an
+integer as an argument, and outputs a number.
+
+Note that all of the options in ```[]``` are optional, and often referred to as
+modifiers. ```type``` is not optional.
+
+The key format string conversion ```type``` are the following:
+
+| Type | Input | Output |
 |:----------|:------|:-------|
 | %x        | unsigned integer | Hexadecimal value |
 | %s        | pointer to an array of char | String |
@@ -52,13 +72,13 @@ The key modifiers are the following:
 | Modifier | Description | Example |
 |:---------|:------------|:--------|
 | i$       | Direct parameter access; Specifies the parameter to use for input | ```%2$x``` : hex value of second parameter |
-| %ix      | Length specifier. Specifies the length of the output. | ```%8x```: Hex value taking up 8 columns |
+| %ix      | Width modifier. Specifies the minimum width of the output. | ```%8x```: Hex value taking up 8 columns |
 | %hh      | Length modifier. Specifies that length is sizeof(char) | ```%hhn```: Writes 1 byte to target pointer |
 | %h       | Length modifier. Specifies that length is sizeof(short) | ```%hn```: Writes 2 bytes (in 32 bit System) to target pointer |
 
-If you do not fully understand all of the above parameters and modifiers, I
-highly suggest playing around with them using a simple C program. I personally
-found they were easier to grasp through practice.
+If you do not fully understand all of the above, I highly suggest playing around
+with them using a simple C program. I personally found they were easier to grasp
+through practice.
 
 ## Reading Memory
 
@@ -101,7 +121,7 @@ enter the string ```%x.%x.%x.%x```.
 
 ```sh
 user@protostar:/tmp$ ./fmt-b
-%x.%x.%x.%x         
+%x.%x.%x.%x
 bffff7ac.3f.a.1
 ```
 
