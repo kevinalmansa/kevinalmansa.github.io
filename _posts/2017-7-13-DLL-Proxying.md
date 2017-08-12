@@ -29,11 +29,11 @@ implement one in C/C++ is a bonus.
 
 When studying the PE Executable Format, I ran into an explanation of how the
 computer worm Stuxnet used a technique known as DLL Proxying, which is made
-possible by a PE technique called Forward Exports. DLL Proxying was used in
-Stuxnet’s attack phase to control and monitor communication to PLCs,
-specifically targeting the centrifuge rotors at a too-low or too-high frequency.
-The study of Stuxnet is fascinating on its own, I deeply encourage readers to
-read more at:
+possible by a PE feature called *Forward Exports*. DLL Proxying was used in
+Stuxnet’s attack phase to control and monitor communication to Programmable
+Logic Controllers (PLCs), specifically targeting the centrifuge rotors at a
+too-low or too-high frequency. The study of Stuxnet is fascinating on its own,
+I deeply encourage readers to read more at:
 [The Stuxnet Worm](https://www2.cs.arizona.edu/~collberg/Teaching/466-566/2012/Resources/presentations/2012/topic9-final/report.pdf).
 
 Absolutely fascinated by how Stuxnet used DLL Proxying in its attack phase, I
@@ -53,17 +53,17 @@ this technique. The project with its details can be found here:
 DLL Proxying is a technique in which an attacker replaces a DLL with a Trojan
 version, renaming the original rather than deleting it. This Trojan DLL
 implements exclusively the functions which the attacker wishes to
-intercept/modify, while forwarding all other functions to the original DLL. Thus
+intercept/modify, while forwarding all other functions to the original DLL, thus
 the name "Proxy". The attacker can then *Man in the Middle* the functions
 they’re interested in, and forward the rest to the original DLL, minimizing the
 amount of work needed while ensuring functionality is not reduced or broken.
 
 The entire attack is conducted in a six-step process:
-  1.	Analyze the original DLL, from here referred to as “target DLL”
+  1.	Analyze the original DLL, from here referred to as “*target DLL*”
   2.	Identify functions to intercept/modify
   3.	Implement intercepted functions in Trojan DLL
-  4.	Forward all other functions to the target DLL (the original DLL)
-  5.	Rename the target DLL
+  4.	Forward all other functions to the *target DLL* (the original DLL)
+  5.	Rename the *target DLL*
   6.	Place Trojan DLL with original name of target DLL
 
 While the entire attack is a six-step process, this process can be grouped into
@@ -73,7 +73,7 @@ two phases:
 
 In the first phase, the Trojan DLL must be coded, with intercepted functions
 implemented and exported. All remaining functions must make use of the PE
-formats “Forward Exports” to export to the original DLL.
+formats *Forward Exports* to export to the original DLL.
 
 In the second phase, write permissions will be required at the target DLLs
 location to rename the original DLL, and write the Trojan in its place.
@@ -105,20 +105,20 @@ If an ordinal value is not explicitly given, the linker will assign one of its
 choice.
 
 Despite the name being optional, most developers export functions with a name,
-and retrieve it with a name as the ordinal value can changed from one update to
-the next. Also, frankly, names are much easier to remember and identify.
+and retrieve it with a name as the ordinal value can be changed from one update
+to the next. Also, frankly, names are much easier to remember and identify.
 
 Finally, the last detail to know about exported functions; the function does not
 have to be implemented in the DLL that is exporting it!
 
-Wait what?
+Wait, what?
 
-This is known as a Forward Export, and, although not commonly used, is used by
+This is known as a *Forward Export*, and, although not commonly used, is used by
 Windows NTDLL.dll, Kernel32.dll, etc.
 
 A Forward Export allows a developer to export a function from one module to be
 handled by another. This is very useful for backwards compatibility
-(for example), and of course, was very useful for Stuxent when implimenting it's
+(for example), and of course, was very useful for Stuxent when implementing it's
 attack phase.
 
 We'll detail what a Forward Exported Function looks like in the next section.
