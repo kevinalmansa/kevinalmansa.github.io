@@ -8,24 +8,25 @@ header:
 
 ### Who Am I?
 
-I have recently graduated from the University of Kent with a MSc in Computer
-Security, and possess two undergraduate degrees, one focusing on System
-Administration & Networking, and the other a three year BSc focusing on
-Programming.
+I am an Information Security professional with an MSc in Computer Security,
+and two undergraduate degrees. One degree focusing on System Administration &
+Networking, the other a three year BSc focusing on Software Development.
 
-I have professional experience in IAM, Web Development, and System
-Administration. I am confident programmer and have experience coding for and
-administrating Linux & Windows environments.
+I have professional experience in Systems & Network Security, IAM, Web
+Development, and System Administration (Linux & Windows). I am a confident
+programmer and have  experience coding for and both Linux & Windows environments
+across multiple technologies.
 
-I love discovering and learning about new technologies and how systems and
-infrastructures function.
+I love discovering and learning about how systems and infrastructures are
+designed and truly function.
 
-My current interests include Vulnerability Research & Application Security,
-Reverse Engineering, Malware Analysis and any CTF I can join. :)
+My current interests include Systems and Network Security, Application Security,
+Reverse Engineering, Vulnerability Research and Obfuscation / Anti-Debug
+techniques.
 
-This blog will allow me to post and explain topics, concepts, systems and tools
-I find interesting as well as serve as a location I use for personal resources
-and to discuss tools I develop.
+This blog grants me a place to post and explain topics, concepts, systems and
+tools I find interesting. It also serves as a location I use for personal
+resources and to discuss tools I develop.
 
 ### Contact me
 
